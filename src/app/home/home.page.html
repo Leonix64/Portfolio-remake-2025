@@ -1,20 +1,197 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content [fullscreen]="true" class="home-content">
+  <!-- Navigation Header -->
+  <div class="navigation-header">
+   <div class="nav-container">
+     <div class="logo">
+       <h2>Portfolio</h2>
+     </div>
+     <nav class="nav-menu">
+       <a routerLink="/home" routerLinkActive="active" class="nav-link">Inicio</a>
+       <a routerLink="/about" routerLinkActive="active" class="nav-link">Sobre Mi</a>
+       <a routerLink="/projects" routerLinkActive="active" class="nav-link">Proyectos</a>
+       <a routerLink="/skills" routerLinkActive="active" class="nav-link">Habilidades</a>
+       <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contacto</a>
+     </nav>
+     <ion-button class="menu-toggle" fill="clear" (click)="toggleMobileMenu()">
+       <ion-icon [name]="mobileMenuOpen ? 'close' : 'menu'" slot="icon-only"></ion-icon>
+     </ion-button>
+   </div>
   </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.open]="mobileMenuOpen">
+    <nav class="mobile-nav">
+      <a routerLink="/home" (click)="closeMobileMenu()" class="mobile-nav-link">Inicio</a>
+      <a routerLink="/about" (click)="closeMobileMenu()" class="mobile-nav-link">Sobre Mí</a>
+      <a routerLink="/projects" (click)="closeMobileMenu()" class="mobile-nav-link">Proyectos</a>
+      <a routerLink="/skills" (click)="closeMobileMenu()" class="mobile-nav-link">Habilidades</a>
+      <a routerLink="/contact" (click)="closeMobileMenu()" class="mobile-nav-link">Contacto</a>
+    </nav>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-background">
+      <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-text" [@fadeInUp]>
+        <h1 class="hero-title">
+          Hola, soy Angel un
+          <span class="highlight">"Desarrollador"</span>
+        </h1>
+        <p class="hero-subtitle">
+          Creando experiencias digitales extraordinarias con codigo limpio y diseño innovador.
+        </p>
+        <div class="hero-buttons">
+          <ion-button class="cta-primary" routerLink="/projects" size="large">
+            Ver Proyectos
+            <ion-icon name="arrow-forward" slot="end"></ion-icon>
+          </ion-button>
+          <ion-button class="cta-secondary" routerLink="/contact" size="large" fill="outline">
+            Contactame
+          </ion-button>
+        </div>
+      </div>
+
+      <div class="hero-avatar" [@slideInRight]>
+        <div class="avatar-container">
+          <div class="avatar-glow"></div>
+          <div class="avatar-circle">
+            <img src="https://i.pinimg.com/736x/cb/40/bd/cb40bdfe23228226a9002b46ddaccda9.jpg" alt="avatar" class="avatar-circle" />
+            <!-- <ion-icon name="person" class="avatar-icon"></ion-icon> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" [@bounce]>
+      <ion-icon name="chevron-down"></ion-icon>
+    </div>
+  </section>
+
+  <!-- Quick Stats Section -->
+  <section class="stats-section">
+    <div class="stats-container">
+      <div class="stat-card" *ngFor="let stat of stats; trackBy: trackByStatId" [@scaleIn]>
+        <div class="stat-icon">
+          <ion-icon [name]="stat.icon"></ion-icon>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-number">{{ stat.value }}</h3>
+          <p class="stat-label">{{ stat.label }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Preview -->
+  <section class="featured-section">
+    <div class="section-container">
+      <h2 class="section-title">Proyectos Destacados</h2>
+      <p class="section-subtitle">Una muestra de mis trabajos mas recientes</p>
+
+      <div class="projects-preview">
+        <div class="project-card" *ngFor="let project of featuredProjects; trackBy: trackByprojectId" [@fadeInUp]>
+          <div class="project-image">
+            <div class="project-overlay">
+              <ion-button fill="clear" class="project-btn" routerLink="/projects">
+                <ion-icon name="eye" slot="icon-only"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" class="project-btn">
+                <ion-icon name="logo-github" slot="icon-only"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-description">{{ project.description }}</p>
+            <div class="project-tags">
+              <span class="tag" *ngFor="let tag of project.tags.slice(0, 3)">{{ tag }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-cta">
+      <ion-button routerLink="/projects" class="view-all-btn" size="large">
+        Ver Todos los Proyectos
+        <ion-icon name="arrow-forward" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+  </section>
+
+  <!-- Skills Preview -->
+  <section class="skills-preview">
+    <div class="section-container">
+      <h2 class="section-title">Tecnologias Principales</h2>
+      <p class="section-subtitle">Las herramientas con las que trabajo dia a dia</p>
+
+      <div class="skills-showcase">
+        <div class="skill-item" *ngFor="let skill of topSkills">
+          <div class="skill-icon">
+            <ion-icon [name]="skill.icon"></ion-icon>
+          </div>
+          <span class="skill-name">{{ skill.name }}</span>
+        </div>
+      </div>
+
+      <div class="section-cta">
+        <ion-button routerLink="/skills" fill="outline" size="large">
+          Ver Todas las Habilidades
+          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview -->
+  <section class="about-preview">
+   <div class="section-container">
+     <div class="about-content">
+       <div class="about-text">
+         <h2>¿Quien soy?</h2>
+         <p>
+           Desarrollador Full Stack apasionado por crear soluciones digitales innovadoras.
+           Con mas de 3 años de experiencia en desarrollo web y móvil, me especializo en construir aplicaciones
+         </p>
+         <ion-button routerLink="/about" class="learn-more-btn" size="large">
+           Conoce Más Sobre Mí
+           <ion-icon name="arrow-forward" slot="end"></ion-icon>
+         </ion-button>
+       </div>
+       <div class="about-visual">
+         <div class="visual-placeholder">
+           <ion-icon name="person"></ion-icon>
+         </div>
+       </div>
+     </div>
+   </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="cta-container">
+      <h2>¿Tienes un proyecto en mente?</h2>
+      <p>¡Hablemos! Estoy disponible para nuevos proyectos y colaboraciones</p>
+      <div class="cta-buttons">
+        <ion-button routerLink="/contact" class="contact-btn" size="large">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          Contactame
+        </ion-button>
+        <ion-button routerLink="/projects" class="portfolio-btn" size="large" fill="outline">
+          Ver Mi Portafolio
+          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </section>
 </ion-content>
