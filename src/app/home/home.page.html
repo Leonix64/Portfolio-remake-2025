@@ -1,36 +1,36 @@
-<ion-content [fullscreen]="true" class="home-content">
+<ion-content [fullscreen]="true" class="home-content" [scrollEvents]="true">
   <!-- Navigation Header -->
   <div class="navigation-header">
-   <div class="nav-container">
-     <div class="logo">
-       <h2>Portfolio</h2>
-     </div>
-     <nav class="nav-menu">
-       <a routerLink="/home" routerLinkActive="active" class="nav-link">Inicio</a>
-       <a routerLink="/about" routerLinkActive="active" class="nav-link">Sobre Mi</a>
-       <a routerLink="/projects" routerLinkActive="active" class="nav-link">Proyectos</a>
-       <a routerLink="/skills" routerLinkActive="active" class="nav-link">Habilidades</a>
-       <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contacto</a>
-     </nav>
-     <ion-button class="menu-toggle" fill="clear" (click)="toggleMobileMenu()">
-       <ion-icon [name]="mobileMenuOpen ? 'close' : 'menu'" slot="icon-only"></ion-icon>
-     </ion-button>
-   </div>
+    <div class="nav-container">
+      <div class="logo">
+        <h2>Angel Gonzalez</h2>
+      </div>
+      <nav class="nav-menu">
+        <a (click)="scrollToSection('home')" class="nav-link">Inicio</a>
+        <a (click)="scrollToSection('about')" class="nav-link">Sobre Mí</a>
+        <a (click)="scrollToSection('projects')" class="nav-link">Proyectos</a>
+        <a (click)="scrollToSection('skills')" class="nav-link">Habilidades</a>
+        <a (click)="scrollToSection('contact')" class="nav-link">Contacto</a>
+      </nav>
+      <ion-button class="menu-toggle" fill="clear" (click)="toggleMobileMenu()">
+        <ion-icon [name]="mobileMenuOpen ? 'close' : 'menu'" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
   </div>
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" [class.open]="mobileMenuOpen">
     <nav class="mobile-nav">
-      <a routerLink="/home" (click)="closeMobileMenu()" class="mobile-nav-link">Inicio</a>
-      <a routerLink="/about" (click)="closeMobileMenu()" class="mobile-nav-link">Sobre Mí</a>
-      <a routerLink="/projects" (click)="closeMobileMenu()" class="mobile-nav-link">Proyectos</a>
-      <a routerLink="/skills" (click)="closeMobileMenu()" class="mobile-nav-link">Habilidades</a>
-      <a routerLink="/contact" (click)="closeMobileMenu()" class="mobile-nav-link">Contacto</a>
+      <a (click)="scrollToSection('home'); closeMobileMenu()" class="mobile-nav-link">Inicio</a>
+      <a (click)="scrollToSection('about'); closeMobileMenu()" class="mobile-nav-link">Sobre Mí</a>
+      <a (click)="scrollToSection('projects'); closeMobileMenu()" class="mobile-nav-link">Proyectos</a>
+      <a (click)="scrollToSection('skills'); closeMobileMenu()" class="mobile-nav-link">Habilidades</a>
+      <a (click)="scrollToSection('contact'); closeMobileMenu()" class="mobile-nav-link">Contacto</a>
     </nav>
   </div>
 
   <!-- Hero Section -->
-  <section class="hero-section">
+  <section id="home" class="hero-section">
     <div class="hero-background">
       <div class="floating-shapes">
         <div class="shape shape-1"></div>
@@ -43,19 +43,19 @@
     <div class="hero-content">
       <div class="hero-text" [@fadeInUp]>
         <h1 class="hero-title">
-          Hola, soy Angel un
-          <span class="highlight">"Desarrollador"</span>
+          Hola, soy Angel González
+          <span class="highlight">Ingeniero en Software</span>
         </h1>
         <p class="hero-subtitle">
-          Creando experiencias digitales extraordinarias con codigo limpio y diseño innovador.
+          Especializado en desarrollo web y móvil. Creo aplicaciones ágiles e innovadoras que se adaptan al panorama tecnológico actual.
         </p>
         <div class="hero-buttons">
-          <ion-button class="cta-primary" routerLink="/projects" size="large">
+          <ion-button class="cta-primary" (click)="scrollToSection('projects')" size="large">
             Ver Proyectos
             <ion-icon name="arrow-forward" slot="end"></ion-icon>
           </ion-button>
-          <ion-button class="cta-secondary" routerLink="/contact" size="large" fill="outline">
-            Contactame
+          <ion-button class="cta-secondary" (click)="scrollToSection('contact')" size="large" fill="outline">
+            Contáctame
           </ion-button>
         </div>
       </div>
@@ -64,21 +64,20 @@
         <div class="avatar-container">
           <div class="avatar-glow"></div>
           <div class="avatar-circle">
-            <img src="https://i.pinimg.com/736x/cb/40/bd/cb40bdfe23228226a9002b46ddaccda9.jpg" alt="avatar" class="avatar-circle" />
-            <!-- <ion-icon name="person" class="avatar-icon"></ion-icon> -->
+            <img src="https://i.pinimg.com/736x/4e/db/7e/4edb7e3df2521af528b20ab8afd96392.jpg" alt="Angel González" class="avatar-circle" />
           </div>
         </div>
       </div>
     </div>
 
     <!-- Scroll Indicator -->
-    <div class="scroll-indicator" [@bounce]>
+    <div class="scroll-indicator" [@bounce] (click)="scrollToSection('stats')">
       <ion-icon name="chevron-down"></ion-icon>
     </div>
   </section>
 
   <!-- Quick Stats Section -->
-  <section class="stats-section">
+  <section id="stats" class="stats-section">
     <div class="stats-container">
       <div class="stat-card" *ngFor="let stat of stats; trackBy: trackByStatId" [@scaleIn]>
         <div class="stat-icon">
@@ -92,106 +91,290 @@
     </div>
   </section>
 
-  <!-- Featured Projects Preview -->
-  <section class="featured-section">
+  <!-- About Section -->
+  <section id="about" class="about-section">
     <div class="section-container">
-      <h2 class="section-title">Proyectos Destacados</h2>
-      <p class="section-subtitle">Una muestra de mis trabajos mas recientes</p>
-
-      <div class="projects-preview">
-        <div class="project-card" *ngFor="let project of featuredProjects; trackBy: trackByprojectId" [@fadeInUp]>
-          <div class="project-image">
-            <div class="project-overlay">
-              <ion-button fill="clear" class="project-btn" routerLink="/projects">
-                <ion-icon name="eye" slot="icon-only"></ion-icon>
-              </ion-button>
-              <ion-button fill="clear" class="project-btn">
-                <ion-icon name="logo-github" slot="icon-only"></ion-icon>
-              </ion-button>
+      <h2 class="section-title">¿Quién soy?</h2>
+      <p class="section-subtitle">Un poco sobre mi trayectoria profesional</p>
+      
+      <div class="about-content">
+        <!-- Columna izquierda -->
+        <div class="about-cards">
+          <div class="about-card education-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <ion-icon name="school"></ion-icon>
+              </div>
+              <h3>Educación</h3>
+            </div>
+            <div class="card-content">
+              <div class="education-item" *ngFor="let edu of education; trackBy: trackByEducationId">
+                <h4>{{ edu.degree }}</h4>
+                <p class="institution">{{ edu.institution }}</p>
+                <p class="period">{{ edu.period }}</p>
+              </div>
             </div>
           </div>
+        
+          <div class="about-card experience-card">
+            <div class="card-header">
+              <div class="card-icon">
+                <ion-icon name="briefcase"></ion-icon>
+              </div>
+              <h3>Experiencia</h3>
+            </div>
+            <div class="card-content">
+              <div class="timeline">
+                <div class="timeline-item" *ngFor="let exp of experiences; trackBy: trackByExperienceId">
+                  <div class="timeline-dot"></div>
+                  <div class="timeline-content">
+                    <h4>{{ exp.title }}</h4>
+                    <p class="company">{{ exp.company }}</p>
+                    <p class="period">{{ exp.period }}</p>
+                    <ul>
+                      <li *ngFor="let desc of exp.description">{{ desc }}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Columna derecha -->
+        <div class="about-sidebar">
+          <div class="profile-card">
+            <div class="profile-image">
+              <div class="image-container">
+                <img src="https://i.pinimg.com/736x/cb/40/bd/cb40bdfe23228226a9002b46ddaccda9.jpg" alt="Ángel González">
+              </div>
+            </div>
+            <div class="profile-info">
+              <h3>Ángel González</h3>
+              <p class="title">Ingeniero en Software</p>
+              <p class="description">Especializado en desarrollo web y móvil con experiencia en tecnologías modernas.</p>
+              
+              <div class="contact-details">
+                <div class="contact-item">
+                  <ion-icon name="mail" class="contact-icon"></ion-icon>
+                  <span>angelgonzalezh08@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                  <ion-icon name="call" class="contact-icon"></ion-icon>
+                  <!-- <span>618-258-7863</span> -->
+                  <span>618-xxx-xxxx</span>
+                </div>
+                <div class="contact-item">
+                  <ion-icon name="location" class="contact-icon"></ion-icon>
+                  <span>Durango, Dgo. México</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="strengths-card">
+            <h3>Fortalezas</h3>
+            <div class="strengths-grid">
+              <div class="strength-item" *ngFor="let strength of strengths">
+                <ion-icon [name]="strength.icon"></ion-icon>
+                <span>{{ strength.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section with Grid - Mejorada -->
+  <section id="projects" class="projects-section">
+    <div class="section-container">
+      <h2 class="section-title">Mis Proyectos</h2>
+      <p class="section-subtitle">Explora mi trabajo más destacado</p>
+    
+      <div class="projects-filter">
+        <button class="filter-btn active" (click)="filterProjects('all')">Todos</button>
+        <button class="filter-btn" (click)="filterProjects('web')">Web</button>
+        <button class="filter-btn" (click)="filterProjects('mobile')">Móvil</button>
+        <button class="filter-btn" (click)="filterProjects('ai')">IA/ML</button>
+        <button class="filter-btn" (click)="filterProjects('tools')">Herramientas</button>
+      </div>
+    
+      <div class="projects-grid">
+        <div class="project-card" 
+             *ngFor="let project of filteredProjects; trackBy: trackByProjectId"
+             [class.featured]="project.featured"
+             [attr.data-category]="project.category">
+          
+          <div class="featured-badge" *ngIf="project.featured">Destacado</div>
+          
+          <div class="project-image">
+            <img [src]="project.imageUrl" [alt]="project.title">
+            <div class="project-overlay">
+              <div class="project-links">
+                <a [href]="project.sourceUrl" target="_blank" class="project-link code">
+                  <ion-icon name="logo-github"></ion-icon>
+                  Código
+                </a>
+              </div>
+            </div>
+          </div>
+          
           <div class="project-content">
+            <div class="project-tags">
+              <span class="project-tag" *ngFor="let tag of project.tags">{{ tag }}</span>
+            </div>
             <h3 class="project-title">{{ project.title }}</h3>
             <p class="project-description">{{ project.description }}</p>
-            <div class="project-tags">
-              <span class="tag" *ngFor="let tag of project.tags.slice(0, 3)">{{ tag }}</span>
+          </div>
+        </div>
+      </div>
+    
+      <div class="projects-cta">
+        <p>¿Interesado en ver más proyectos?</p>
+        <ion-button class="github-btn" href="https://github.com/Leonix64" target="_blank" size="large">
+          <ion-icon name="logo-github" slot="start"></ion-icon>
+          Ver más en GitHub
+        </ion-button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="skills-section">
+    <div class="section-container">
+      <h2 class="section-title">Habilidades Técnicas</h2>
+      <p class="section-subtitle">Tecnologías y herramientas que domino</p>
+
+      <div class="skills-categories">
+        <div class="skill-category">
+          <h3 class="category-title">Frontend</h3>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <ion-icon name="logo-angular"></ion-icon>
+              <span>Angular</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="logo-ionic"></ion-icon>
+              <span>Ionic</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="logo-html5"></ion-icon>
+              <span>HTML5</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="logo-css3"></ion-icon>
+              <span>CSS/SCSS</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="logo-javascript"></ion-icon>
+              <span>JavaScript</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="code-slash"></ion-icon>
+              <span>TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="category-title">Backend</h3>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <ion-icon name="logo-nodejs"></ion-icon>
+              <span>Node.js</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="logo-python"></ion-icon>
+              <span>Python</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="code"></ion-icon>
+              <span>PHP</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="server"></ion-icon>
+              <span>Java SpringBoot</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="terminal"></ion-icon>
+              <span>Go</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="category-title">Bases de Datos</h3>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <ion-icon name="server-outline"></ion-icon>
+              <span>MySQL</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="server-outline"></ion-icon>
+              <span>PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <h3 class="category-title">Herramientas</h3>
+          <div class="skills-grid">
+            <div class="skill-card">
+              <ion-icon name="logo-github"></ion-icon>
+              <span>Git</span>
+            </div>
+            <div class="skill-card">
+              <ion-icon name="cube"></ion-icon>
+              <span>Postman</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="section-cta">
-      <ion-button routerLink="/projects" class="view-all-btn" size="large">
-        Ver Todos los Proyectos
-        <ion-icon name="arrow-forward" slot="end"></ion-icon>
-      </ion-button>
-    </div>
   </section>
 
-  <!-- Skills Preview -->
-  <section class="skills-preview">
-    <div class="section-container">
-      <h2 class="section-title">Tecnologias Principales</h2>
-      <p class="section-subtitle">Las herramientas con las que trabajo dia a dia</p>
-
-      <div class="skills-showcase">
-        <div class="skill-item" *ngFor="let skill of topSkills">
-          <div class="skill-icon">
-            <ion-icon [name]="skill.icon"></ion-icon>
-          </div>
-          <span class="skill-name">{{ skill.name }}</span>
-        </div>
-      </div>
-
-      <div class="section-cta">
-        <ion-button routerLink="/skills" fill="outline" size="large">
-          Ver Todas las Habilidades
-          <ion-icon name="arrow-forward" slot="end"></ion-icon>
-        </ion-button>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Preview -->
-  <section class="about-preview">
-   <div class="section-container">
-     <div class="about-content">
-       <div class="about-text">
-         <h2>¿Quien soy?</h2>
-         <p>
-           Desarrollador Full Stack apasionado por crear soluciones digitales innovadoras.
-           Con mas de 3 años de experiencia en desarrollo web y móvil, me especializo en construir aplicaciones
-         </p>
-         <ion-button routerLink="/about" class="learn-more-btn" size="large">
-           Conoce Más Sobre Mí
-           <ion-icon name="arrow-forward" slot="end"></ion-icon>
-         </ion-button>
-       </div>
-       <div class="about-visual">
-         <div class="visual-placeholder">
-           <ion-icon name="person"></ion-icon>
-         </div>
-       </div>
-     </div>
-   </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta-section">
-    <div class="cta-container">
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="contact-container">
       <h2>¿Tienes un proyecto en mente?</h2>
-      <p>¡Hablemos! Estoy disponible para nuevos proyectos y colaboraciones</p>
+      <p>Estoy disponible para nuevos proyectos y colaboraciones</p>
+      
+      <div class="contact-cards">
+        <a href="mailto:angelgonzalezh08@gmail.com" class="contact-card">
+          <ion-icon name="mail"></ion-icon>
+          <h3>Email</h3>
+          <p>angelgonzalezh08@gmail.com</p>
+        </a>
+
+        <a href="tel:6182587863" class="contact-card">
+          <ion-icon name="call"></ion-icon>
+          <h3>Teléfono</h3>
+          <p>618-258-7863</p>
+        </a>
+
+        <a href="https://github.com/Leonix64" target="_blank" class="contact-card">
+          <ion-icon name="logo-github"></ion-icon>
+          <h3>GitHub</h3>
+          <p>@Leonix64</p>
+        </a>
+      </div>
+
       <div class="cta-buttons">
-        <ion-button routerLink="/contact" class="contact-btn" size="large">
+        <ion-button href="mailto:angelgonzalezh08@gmail.com" class="contact-btn" size="large">
           <ion-icon name="mail" slot="start"></ion-icon>
-          Contactame
+          Enviar Email
         </ion-button>
-        <ion-button routerLink="/projects" class="portfolio-btn" size="large" fill="outline">
-          Ver Mi Portafolio
+        <ion-button (click)="scrollToSection('projects')" class="portfolio-btn" size="large" fill="outline">
+          Ver Proyectos
           <ion-icon name="arrow-forward" slot="end"></ion-icon>
         </ion-button>
       </div>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2024 Ángel González Hernández. Hecho con Angular</p>
+  </footer>
 </ion-content>
