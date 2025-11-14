@@ -1,0 +1,13 @@
+<section id="stats" class="stats-section">
+  <div class="stats-container">
+    <div class="stat-card" *ngFor="let stat of stats; trackBy: trackByStatId">
+      <div class="stat-icon">
+        <ion-icon [name]="stat.icon"></ion-icon>
+      </div>
+      <div class="stat-content">
+        <h3 class="stat-number">{{ stat.value }}</h3>
+        <p class="stat-label">{{ stat.label }}</p>
+      </div>
+    </div>
+  </div>
+</section>

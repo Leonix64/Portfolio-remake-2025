@@ -1,0 +1,81 @@
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <h2>¡Trabajemos juntos!</h2>
+    <p>¿Tienes un proyecto en mente? Estoy disponible para nuevas oportunidades y colaboraciones</p>
+    
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <div class="info-card">
+          <div class="info-header">
+            <ion-icon name="chatbubble-outline"></ion-icon>
+            <h3>Hablemos</h3>
+          </div>
+          <p>Siempre estoy abierto a discutir nuevos proyectos, ideas creativas o oportunidades para formar parte de tu equipo.</p>
+        </div>
+
+        <div class="social-links">
+          <h4>Encuéntrame en:</h4>
+          <div class="links-grid">
+            <a href="https://github.com/Leonix64" target="_blank" class="social-link github">
+              <ion-icon name="logo-github"></ion-icon>
+              <span>GitHub</span>
+            </a>
+            <!-- <a href="https://www.linkedin.com/in/angel-gonzalez" target="_blank" class="social-link linkedin">
+              <ion-icon name="logo-linkedin"></ion-icon>
+              <span>LinkedIn</span>
+            </a> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-methods">
+        <a href="mailto:angelgonzalezh08@gmail.com" class="contact-card email">
+          <div class="card-icon">
+            <ion-icon name="mail"></ion-icon>
+          </div>
+          <div class="card-info">
+            <h3>Email</h3>
+            <p>angelgonzalezh08@gmail.com</p>
+            <span class="cta">Enviar correo →</span>
+          </div>
+        </a>
+
+        <a href="tel:6182587863" class="contact-card phone">
+          <div class="card-icon">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+          <div class="card-info">
+            <h3>Teléfono</h3>
+            <p>+52 618 258 7863</p>
+            <span class="cta">Llamar →</span>
+          </div>
+        </a>
+
+        <div class="contact-card location">
+          <div class="card-icon">
+            <ion-icon name="location"></ion-icon>
+          </div>
+          <div class="card-info">
+            <h3>Ubicación</h3>
+            <p>Durango, Dgo. México</p>
+            <span class="availability">Disponible para remoto</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <p class="cta-text">¿Prefieres ver mi trabajo primero?</p>
+      <div class="cta-buttons">
+        <ion-button (click)="scrollToSection.emit('projects')" class="projects-btn" size="large" fill="outline">
+          <ion-icon name="folder-open" slot="start"></ion-icon>
+          Ver Proyectos
+        </ion-button>
+        <ion-button href="mailto:angelgonzalezh08@gmail.com" class="email-btn" size="large">
+          <ion-icon name="send" slot="start"></ion-icon>
+          Enviar Email
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+<section id="home" class="hero-section">
+  <div class="hero-background">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">
+        Hola, soy Angel González
+        <span class="highlight">Ingeniero en Software</span>
+      </h1>
+      <p class="hero-subtitle">
+        Especializado en desarrollo web y móvil. Creo aplicaciones ágiles e innovadoras que se adaptan al panorama tecnológico actual.
+      </p>
+      <div class="hero-buttons">
+        <ion-button class="cta-primary" (click)="scrollToSection.emit('projects')" size="large">
+          Ver Proyectos
+          <ion-icon name="arrow-forward" slot="end"></ion-icon>
+        </ion-button>
+        <ion-button class="cta-secondary" (click)="scrollToSection.emit('contact')" size="large" fill="outline">
+          Contáctame
+        </ion-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator" (click)="scrollToSection.emit('stats')">
+    <ion-icon name="chevron-down"></ion-icon>
+  </div>
+</section>

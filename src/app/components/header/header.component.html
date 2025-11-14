@@ -1,0 +1,27 @@
+<div class="navigation-header">
+  <div class="nav-container">
+    <div class="logo">
+      <h2>Angel Gonzalez</h2>
+    </div>
+    <nav class="nav-menu">
+      <a (click)="onScrollToSection('home')" class="nav-link">Inicio</a>
+      <a (click)="onScrollToSection('about')" class="nav-link">Sobre Mí</a>
+      <a (click)="onScrollToSection('projects')" class="nav-link">Proyectos</a>
+      <a (click)="onScrollToSection('skills')" class="nav-link">Habilidades</a>
+      <a (click)="onScrollToSection('contact')" class="nav-link">Contacto</a>
+    </nav>
+    <ion-button class="menu-toggle" fill="clear" (click)="onToggleMobileMenu()">
+      <ion-icon [name]="mobileMenuOpen ? 'close' : 'menu'" slot="icon-only"></ion-icon>
+    </ion-button>
+  </div>
+</div>
+
+<div class="mobile-menu" [class.open]="mobileMenuOpen">
+  <nav class="mobile-nav">
+    <a (click)="onScrollToSection('home')" class="mobile-nav-link">Inicio</a>
+    <a (click)="onScrollToSection('about')" class="mobile-nav-link">Sobre Mí</a>
+    <a (click)="onScrollToSection('projects')" class="mobile-nav-link">Proyectos</a>
+    <a (click)="onScrollToSection('skills')" class="mobile-nav-link">Habilidades</a>
+    <a (click)="onScrollToSection('contact')" class="mobile-nav-link">Contacto</a>
+  </nav>
+</div>

@@ -1,0 +1,51 @@
+<section id="projects" class="projects-section">
+  <div class="projects-container">
+    <h2 class="projects-title">Mis Proyectos</h2>
+    <p class="projects-subtitle">Explora mi trabajo más destacado</p>
+  
+    <div class="projects-filter">
+      <button class="filter-btn" [class.active]="activeFilter === 'all'" (click)="filterProjects('all')">Todos</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'web'" (click)="filterProjects('web')">Web</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'mobile'" (click)="filterProjects('mobile')">Móvil</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'ai'" (click)="filterProjects('ai')">IA/ML</button>
+      <button class="filter-btn" [class.active]="activeFilter === 'tools'" (click)="filterProjects('tools')">Herramientas</button>
+    </div>
+  
+    <div class="projects-grid">
+      <div class="project-card" 
+           *ngFor="let project of filteredProjects; trackBy: trackByProjectId"
+           [class.featured]="project.featured">
+        
+        <div class="featured-badge" *ngIf="project.featured">Destacado</div>
+        
+        <div class="project-image">
+          <img [src]="project.imageUrl" [alt]="project.title">
+          <div class="project-overlay">
+            <div class="project-links">
+              <a [href]="project.sourceUrl" target="_blank" class="project-link code">
+                <ion-icon name="logo-github"></ion-icon>
+                Código
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-content">
+          <div class="project-tags">
+            <span class="project-tag" *ngFor="let tag of project.tags">{{ tag }}</span>
+          </div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-description">{{ project.description }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="projects-cta">
+      <p>¿Interesado en ver más proyectos?</p>
+      <ion-button class="github-btn" href="https://github.com/Leonix64" target="_blank" size="large">
+        <ion-icon name="logo-github" slot="start"></ion-icon>
+        Ver más en GitHub
+      </ion-button>
+    </div>
+  </div>
+</section>

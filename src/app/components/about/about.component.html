@@ -1,0 +1,95 @@
+<section id="about" class="about-section">
+  <div class="about-container">
+    <h2 class="about-title">¿Quién soy?</h2>
+    <p class="about-subtitle">Un poco sobre mi trayectoria profesional</p>
+    
+    <div class="about-content">
+      <div class="about-cards">
+        <div class="about-card education-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <ion-icon name="school"></ion-icon>
+            </div>
+            <h3>Educación</h3>
+          </div>
+          <div class="card-content">
+            <div class="education-item" *ngFor="let edu of education; trackBy: trackByEducationId">
+              <h4>{{ edu.degree }}</h4>
+              <p class="institution">{{ edu.institution }}</p>
+              <p class="period">{{ edu.period }}</p>
+            </div>
+          </div>
+        </div>
+        
+        
+      
+        <div class="about-card experience-card">
+          <div class="card-header">
+            <div class="card-icon">
+              <ion-icon name="briefcase"></ion-icon>
+            </div>
+            <h3>Experiencia</h3>
+          </div>
+          <div class="card-content">
+            <div class="timeline">
+              <div class="timeline-item" *ngFor="let exp of experiences; trackBy: trackByExperienceId">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <h4>{{ exp.title }}</h4>
+                  <p class="company">{{ exp.company }}</p>
+                  <p class="period">{{ exp.period }}</p>
+                  <ul>
+                    <li *ngFor="let desc of exp.description">{{ desc }}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="about-sidebar">
+        <div class="profile-card">
+          <div class="profile-image">
+            <div class="image-container">
+              <img src="../../../assets/images/Angel.webp" alt="Ángel González">
+            </div>
+          </div>
+          <div class="profile-info">
+            <h3>Ángel González</h3>
+            <p class="title">Ingeniero en Software</p>
+            <p class="description">
+              Apasionado por crear soluciones tecnológicas innovadoras. 
+              Mi enfoque combina creatividad con código limpio y eficiente.
+            </p>
+            
+            <div class="quick-info">
+              <div class="info-item">
+                <ion-icon name="location" class="info-icon"></ion-icon>
+                <span>Durango, México</span>
+              </div>
+              <div class="info-item">
+                <ion-icon name="briefcase" class="info-icon"></ion-icon>
+                <span>3 años de experiencia</span>
+              </div>
+              <div class="info-item">
+                <ion-icon name="code-slash" class="info-icon"></ion-icon>
+                <span>Full Stack Developer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <div class="strengths-card">
+          <h3>Fortalezas</h3>
+          <div class="strengths-grid">
+            <div class="strength-item" *ngFor="let strength of strengths">
+              <ion-icon [name]="strength.icon"></ion-icon>
+              <span>{{ strength.name }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

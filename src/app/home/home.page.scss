@@ -1,27 +1,57 @@
-#container {
+.home-content {
+  --background: linear-gradient(135deg, #2d3748 0%, #38b2ac 100%);
+  overflow-x: hidden;
+}
+
+// Smooth scroll
+html {
+  scroll-behavior: smooth;
+}
+
+// Common Section Styles
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+
+  @media (max-width: 768px) {
+    padding: 0 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 1rem;
+  }
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
   text-align: center;
+  color: #2d3748;
+  margin: 0 0 1rem 0;
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.75rem;
+  }
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
+.section-subtitle {
+  text-align: center;
+  color: #718096;
+  margin: 0 0 3rem 0;
+  font-size: 1.1rem;
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin: 0 0 2rem 0;
+  }
 
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    margin: 0 0 1.5rem 0;
+  }
 }

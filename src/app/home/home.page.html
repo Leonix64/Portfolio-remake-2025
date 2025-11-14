@@ -1,20 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="home-content" [scrollEvents]="true">
+  <app-header 
+    [mobileMenuOpen]="mobileMenuOpen"
+    (scrollToSection)="scrollToSection($event)"
+    (toggleMobileMenu)="onToggleMobileMenu()">
+  </app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-hero (scrollToSection)="scrollToSection($event)"></app-hero>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <app-stats [stats]="stats"></app-stats>
+
+  <app-about
+    [education]="education"
+    [experiences]="experiences"
+    [strengths]="strengths">
+  </app-about>
+
+  <app-projects [projects]="projects"></app-projects>
+
+  <app-skills [skills]="skills"></app-skills>
+
+  <app-contact (scrollToSection)="scrollToSection($event)"></app-contact>
+
+  <app-footer></app-footer>
 </ion-content>

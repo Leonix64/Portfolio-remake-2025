@@ -1,0 +1,196 @@
+.skills-section {
+  padding: 4rem 2rem;
+  background: white;
+
+  @media (max-width: 768px) {
+    padding: 3rem 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 2.5rem 1rem;
+  }
+
+  .skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    @media (max-width: 768px) {
+      padding: 0 1rem;
+    }
+
+    @media (max-width: 480px) {
+      padding: 0;
+    }
+  }
+
+  .skills-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #2d3748;
+    margin: 0 0 1rem 0;
+
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.75rem;
+    }
+  }
+
+  .skills-subtitle {
+    text-align: center;
+    color: #718096;
+    margin: 0 0 3rem 0;
+    font-size: 1.1rem;
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      margin: 0 0 2rem 0;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.95rem;
+      margin: 0 0 1.5rem 0;
+    }
+  }
+
+  .skills-categories {
+    display: grid;
+    gap: 3rem;
+    margin-top: 3rem;
+
+    @media (max-width: 768px) {
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 480px) {
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .skill-category {
+      .category-title {
+        color: #2d3748;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        text-align: center;
+
+        @media (max-width: 768px) {
+          font-size: 1.6rem;
+          margin-bottom: 1.25rem;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 1.4rem;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+
+        @media (max-width: 768px) {
+          grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+          gap: 1.25rem;
+        }
+
+        @media (max-width: 640px) {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+
+        @media (max-width: 480px) {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.875rem;
+        }
+
+        @media (max-width: 360px) {
+          grid-template-columns: 1fr;
+          max-width: 250px;
+          margin: 0 auto;
+        }
+
+        .skill-card {
+          background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+          padding: 1.5rem;
+          border-radius: 12px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.8rem;
+          border: 1px solid rgba(56, 178, 172, 0.1);
+          transition: all 0.3s ease;
+          min-height: 120px;
+          justify-content: center;
+
+          @media (max-width: 768px) {
+            padding: 1.25rem;
+            min-height: 110px;
+          }
+
+          @media (max-width: 480px) {
+            padding: 1rem;
+            border-radius: 10px;
+            gap: 0.7rem;
+            min-height: 100px;
+          }
+
+          &:hover {
+            background: linear-gradient(45deg, #38b2ac, #2d3748);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(56, 178, 172, 0.3);
+
+            @media (max-width: 768px) {
+              transform: translateY(-3px);
+            }
+
+            ion-icon,
+            span {
+              color: white;
+            }
+          }
+
+          ion-icon {
+            font-size: 2.5rem;
+            color: #38b2ac;
+            transition: color 0.3s ease;
+            flex-shrink: 0;
+
+            @media (max-width: 768px) {
+              font-size: 2.25rem;
+            }
+
+            @media (max-width: 480px) {
+              font-size: 2rem;
+            }
+          }
+
+          span {
+            font-weight: 600;
+            color: #2d3748;
+            transition: color 0.3s ease;
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.3;
+            word-break: break-word;
+
+            @media (max-width: 768px) {
+              font-size: 0.95rem;
+            }
+
+            @media (max-width: 480px) {
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

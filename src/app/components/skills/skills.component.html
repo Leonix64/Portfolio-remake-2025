@@ -1,0 +1,18 @@
+<section id="skills" class="skills-section">
+  <div class="skills-container">
+    <h2 class="skills-title">Habilidades Técnicas</h2>
+    <p class="skills-subtitle">Tecnologías y herramientas que domino</p>
+
+    <div class="skills-categories">
+      <div class="skill-category" *ngFor="let category of skills">
+        <h3 class="category-title">{{ category.title }}</h3>
+        <div class="skills-grid">
+          <div class="skill-card" *ngFor="let skill of category.skills">
+            <ion-icon [name]="skill.icon"></ion-icon>
+            <span>{{ skill.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
