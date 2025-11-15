@@ -1,3 +1,4 @@
+/* Hero Component SCSS */
 .hero-section {
   min-height: 100vh;
   position: relative;
@@ -15,6 +16,43 @@
     bottom: 0;
     background: linear-gradient(135deg, #2d3748 0%, #38b2ac 100%);
 
+    .code-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none;
+      overflow: hidden;
+
+      .code-line {
+        position: absolute;
+        font-family: "Courier New", monospace;
+        white-space: nowrap;
+        color: rgba(255, 255, 255, 0.1);
+        text-shadow: 0 0 8px rgba(56, 178, 172, 0.3);
+        animation: float-code-fade 12s ease-in-out infinite;
+
+        &:nth-child(odd) { font-size: 0.8rem; }
+        &:nth-child(even) { font-size: 1rem; }
+        &:nth-child(3n) { font-size: 0.7rem; }
+        &:nth-child(5n) { font-size: 1.1rem; }
+
+        @for $i from 1 through 30 {
+          &:nth-child(#{$i}) {
+            top: random(100) * 1%;
+            left: random(20) * 1%;
+            animation-delay: random(15) * 0.5s;
+            animation-duration: 10s + random(10);
+          }
+        }
+
+        @media (max-width: 768px) {
+          font-size: 0.6rem !important;
+        }
+      }
+    }
+
     .floating-shapes {
       position: absolute;
       width: 100%;
@@ -23,44 +61,34 @@
       .shape {
         position: absolute;
         border-radius: 50%;
-        opacity: 0.1;
         animation: float 6s ease-in-out infinite;
-
-        &.shape-1 {
-          width: 80px;
-          height: 80px;
-          background: #f56565;
-          top: 20%;
-          left: 10%;
-          animation-delay: 0s;
+        
+        // Mixin para shapes comunes
+        @mixin shape-base($size, $color, $blur, $top, $left, $delay) {
+          width: $size;
+          height: $size;
+          background: radial-gradient(circle, $color 0%, transparent 70%);
+          box-shadow: 0 0 $size * 1.5 rgba($color, 0.9),
+                      0 0 $size * 2 rgba($color, 0.6);
+          filter: blur($blur);
+          top: $top;
+          left: $left;
+          animation-delay: $delay;
         }
 
-        &.shape-2 {
-          width: 120px;
-          height: 120px;
-          background: rgba(245, 101, 101, 0.5);
-          top: 60%;
-          right: 15%;
-          animation-delay: 2s;
-        }
-
-        &.shape-3 {
-          width: 60px;
-          height: 60px;
-          background: #38b2ac;
-          top: 30%;
-          right: 20%;
-          animation-delay: 4s;
-        }
-
-        &.shape-4 {
-          width: 100px;
-          height: 100px;
-          background: rgba(56, 178, 172, 0.3);
-          top: 40%;
-          right: 40%;
-          animation-delay: 1s;
-        }
+        // Shapes originales
+        &.shape-1 { @include shape-base(80px, rgba(245, 101, 101, 0.6), 2px, 20%, 10%, 0s); }
+        &.shape-2 { @include shape-base(120px, rgba(245, 101, 101, 0.5), 3px, 60%, 85%, 2s); }
+        &.shape-3 { @include shape-base(60px, rgba(56, 178, 172, 0.6), 2px, 30%, 80%, 4s); }
+        &.shape-4 { @include shape-base(100px, rgba(56, 178, 172, 0.45), 2.5px, 40%, 60%, 1s); }
+        
+        // Shapes pequeñas adicionales
+        &.shape-5 { @include shape-base(40px, rgba(245, 101, 101, 0.5), 1.5px, 75%, 20%, 1.5s); }
+        &.shape-6 { @include shape-base(50px, rgba(56, 178, 172, 0.5), 1.8px, 10%, 70%, 3.5s); }
+        &.shape-7 { @include shape-base(35px, rgba(245, 101, 101, 0.6), 1.5px, 85%, 65%, 2.8s); }
+        &.shape-8 { @include shape-base(45px, rgba(56, 178, 172, 0.55), 1.7px, 50%, 5%, 4.2s); }
+        &.shape-9 { @include shape-base(38px, rgba(245, 101, 101, 0.55), 1.6px, 5%, 35%, 3.2s); }
+        &.shape-10 { @include shape-base(55px, rgba(56, 178, 172, 0.48), 2px, 65%, 92%, 1.8s); }
       }
     }
   }
@@ -74,14 +102,8 @@
     width: 100%;
     text-align: center;
 
-    @media (max-width: 768px) {
-      padding: 0 1.5rem;
-      max-width: 700px;
-    }
-
-    @media (max-width: 480px) {
-      padding: 0 1rem;
-    }
+    @media (max-width: 768px) { padding: 0 1.5rem; max-width: 700px; }
+    @media (max-width: 480px) { padding: 0 1rem; }
 
     .hero-text {
       color: white;
@@ -92,13 +114,8 @@
         margin: 0 0 1.5rem 0;
         line-height: 1.2;
 
-        @media (max-width: 768px) {
-          margin: 0 0 1.25rem 0;
-        }
-
-        @media (max-width: 480px) {
-          margin: 0 0 1rem 0;
-        }
+        @media (max-width: 768px) { margin: 0 0 1.25rem 0; }
+        @media (max-width: 480px) { margin: 0 0 1rem 0; }
 
         .highlight {
           display: block;
@@ -107,32 +124,45 @@
           -webkit-text-fill-color: transparent;
           background-clip: text;
           margin-top: 0.5rem;
+          min-height: 5rem;
+          position: relative;
 
-          @media (max-width: 480px) {
-            margin-top: 0.4rem;
+          @media (max-width: 768px) { min-height: 4rem; }
+          @media (max-width: 480px) { margin-top: 0.4rem; min-height: 3.5rem; }
+
+          .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 4rem;
+            background: linear-gradient(180deg, #f56565, #38b2ac);
+            margin-left: 0.25rem;
+            vertical-align: middle;
+            animation: blink 1s ease-in-out infinite;
+
+            @media (max-width: 768px) { height: 3rem; }
+            @media (max-width: 480px) { height: 2.5rem; }
           }
         }
       }
 
       .hero-subtitle {
         font-size: 1.3rem;
-        margin: 0 0 2.5rem 0;
+        margin: 0 0 2rem 0;
         opacity: 0.95;
         line-height: 1.7;
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
 
-        @media (max-width: 768px) {
-          font-size: 1.15rem;
-          margin-bottom: 2rem;
-          line-height: 1.6;
+        @media (max-width: 768px) { 
+          font-size: 1.15rem; 
+          margin-bottom: 1.5rem; 
+          line-height: 1.6; 
         }
-
-        @media (max-width: 480px) {
-          font-size: 1.05rem;
-          margin-bottom: 1.75rem;
-          line-height: 1.6;
+        @media (max-width: 480px) { 
+          font-size: 1.05rem; 
+          margin-bottom: 1.25rem; 
+          line-height: 1.6; 
         }
       }
 
@@ -142,14 +172,11 @@
         justify-content: center;
         flex-wrap: wrap;
 
-        @media (max-width: 768px) {
-          gap: 1rem;
-        }
-
-        @media (max-width: 480px) {
-          flex-direction: column;
-          align-items: center;
-          gap: 0.875rem;
+        @media (max-width: 768px) { gap: 1rem; }
+        @media (max-width: 480px) { 
+          flex-direction: column; 
+          align-items: center; 
+          gap: 0.875rem; 
         }
 
         ion-button {
@@ -165,18 +192,19 @@
           font-weight: 600;
           font-size: 1.05rem;
           padding: 0.5rem 2rem;
+          --box-shadow: 0 10px 25px rgba(245, 101, 101, 0.3);
+          transition: all 0.3s ease;
 
-          @media (max-width: 768px) {
-            font-size: 1rem;
-            padding: 0.4rem 1.75rem;
+          @media (max-width: 768px) { 
+            font-size: 1rem; 
+            padding: 0.4rem 1.75rem; 
           }
-
-          @media (max-width: 480px) {
-            font-size: 0.95rem;
-          }
+          @media (max-width: 480px) { font-size: 0.95rem; }
 
           &:hover {
             --background: linear-gradient(45deg, #e74c3c, #2d9b94);
+            transform: scale(1.05);
+            --box-shadow: 0 15px 35px rgba(245, 101, 101, 0.4);
           }
         }
 
@@ -186,19 +214,20 @@
           font-weight: 600;
           font-size: 1.05rem;
           padding: 0.5rem 2rem;
+          --box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
 
-          @media (max-width: 768px) {
-            font-size: 1rem;
-            padding: 0.4rem 1.75rem;
+          @media (max-width: 768px) { 
+            font-size: 1rem; 
+            padding: 0.4rem 1.75rem; 
           }
-
-          @media (max-width: 480px) {
-            font-size: 0.95rem;
-          }
+          @media (max-width: 480px) { font-size: 0.95rem; }
 
           &:hover {
             --background: rgba(255, 255, 255, 0.1);
             --border-color: white;
+            transform: scale(1.05);
+            --box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
           }
         }
       }
@@ -217,15 +246,8 @@
     transition: all 0.3s ease;
     animation: bounce 2s ease-in-out infinite;
 
-    @media (max-width: 768px) {
-      bottom: 2rem;
-      font-size: 2.25rem;
-    }
-
-    @media (max-width: 480px) {
-      bottom: 1.5rem;
-      font-size: 2rem;
-    }
+    @media (max-width: 768px) { bottom: 2rem; font-size: 2.25rem; }
+    @media (max-width: 480px) { bottom: 1.5rem; font-size: 2rem; }
 
     &:hover {
       color: white;
@@ -234,47 +256,31 @@
   }
 }
 
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
+// Animaciones
 @keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-20px) rotate(180deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 @keyframes bounce {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0) translateX(-50%);
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+  40% { transform: translateY(-15px) translateX(-50%); }
+  60% { transform: translateY(-7px) translateX(-50%); }
+}
+
+@keyframes float-code-fade {
+  0%, 100% { 
+    opacity: 0;
+    transform: translateY(0px) translateX(-20px);
   }
-  40% {
-    transform: translateY(-15px) translateX(-50%);
-  }
-  60% {
-    transform: translateY(-7px) translateX(-50%);
+  10%, 90% { opacity: 0.15; }
+  50% { 
+    opacity: 0.25;
+    transform: translateY(-40px) translateX(20px);
   }
 }

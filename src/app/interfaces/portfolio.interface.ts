@@ -61,3 +61,8 @@ export interface DiverseExperience {
     icon: string;
     skills?: string[];
 }
+
+export interface Shape {
+    id: number;
+    delay: number;
+}

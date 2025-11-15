@@ -1,10 +1,17 @@
 <section id="home" class="hero-section">
   <div class="hero-background">
+    <div class="code-lines">
+      <div class="code-line" *ngFor="let line of codeLines; let i = index" 
+           [style.animation-delay.s]="i * 0.5">
+        {{ line }}
+      </div>
+    </div>
+
     <div class="floating-shapes">
-      <div class="shape shape-1"></div>
-      <div class="shape shape-2"></div>
-      <div class="shape shape-3"></div>
-      <div class="shape shape-4"></div>
+      <div class="shape" *ngFor="let shape of shapes" 
+           [class]="'shape shape-' + shape.id"
+           [style.animation-delay.s]="shape.delay">
+      </div>
     </div>
   </div>
 
@@ -12,11 +19,16 @@
     <div class="hero-text">
       <h1 class="hero-title">
         Hola, soy Angel González
-        <span class="highlight">Ingeniero en Software</span>
+        <span class="highlight">
+          {{ typedText }}
+          <span class="cursor"></span>
+        </span>
       </h1>
+      
       <p class="hero-subtitle">
         Especializado en desarrollo web y móvil. Creo aplicaciones ágiles e innovadoras que se adaptan al panorama tecnológico actual.
       </p>
+
       <div class="hero-buttons">
         <ion-button class="cta-primary" (click)="scrollToSection.emit('projects')" size="large">
           Ver Proyectos

@@ -367,44 +367,67 @@
     padding: 2rem;
     border-radius: 16px;
     border: 1px solid rgba(56, 178, 172, 0.2);
-
+    transition: all 0.3s ease;
+  
     @media (max-width: 768px) {
       padding: 1.75rem 1.5rem;
     }
-
+  
     @media (max-width: 480px) {
       padding: 1.5rem 1rem;
       border-radius: 12px;
     }
-
+  
+    // Efecto hover suave para el contenedor
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(56, 178, 172, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(56, 178, 172, 0.15);
+    }
+  
     p {
       color: white;
       font-size: 1.2rem;
       margin: 0 0 1.5rem 0;
-
+    
       @media (max-width: 768px) {
         font-size: 1.1rem;
         margin: 0 0 1.25rem 0;
       }
-
+    
       @media (max-width: 480px) {
         font-size: 1rem;
         margin: 0 0 1rem 0;
       }
     }
-
+  
     .github-btn {
       --background: linear-gradient(45deg, #f56565, #38b2ac);
       --color: white;
       font-weight: 600;
-
+      transition: all 0.3s ease;
+    
       @media (max-width: 480px) {
         width: 100%;
         max-width: 300px;
       }
-
+    
+      // Efecto hover mejorado con colores más vibrantes
       &:hover {
-        --background: linear-gradient(45deg, #38b2ac, #2d3748);
+        --background: linear-gradient(45deg, #ff6b6b, #4fd1c7);
+        transform: scale(1.05);
+        --box-shadow: 0 8px 25px rgba(79, 209, 199, 0.4);
+        
+        ion-icon {
+          transform: scale(1.2);
+          filter: brightness(1.2);
+        }
+      }
+    
+      ion-icon {
+        transition: all 0.3s ease;
+        margin-right: 0.5rem;
       }
     }
   }
